@@ -1,0 +1,120 @@
+{
+  "info": {
+    "_postman_id": "My_ID",
+    "name": "My_Postman_Folder_Name",
+    "schema": "https://schema.getpostman.com/json/collection/v1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "My_File_Name",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "var pagenumber = pm.environment.get(\"PageNum\");\r",
+              "\r",
+              "if( !pagenumber) {\r",
+              "    pm.environment.set(\"PageNum\", 1);\r",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var pagenumber = pm.environment.get('PageNum');\r",
+              "\r",
+              "pm.environment.set(\"PageNum\", pagenumber+1);\r",
+              "\r",
+              "postman.setNextRequest('My_File_Name');\r",
+              "\r",
+              "if (pagenumber > 1000) {\r",
+              "    postman.setNextRequest(null);\r",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "pragma",
+            "value": "no-cache"
+          },
+          {
+            "key": "cache-control",
+            "value": "no-cache"
+          },
+          {
+            "key": "sec-ch-ua",
+            "value": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"96\", \"Google Chrome\";v=\"96\""
+          },
+          {
+            "key": "accept",
+            "value": "application/json, text/plain, */*"
+          },
+          {
+            "key": "sec-ch-ua-mobile",
+            "value": "?0"
+          },
+          {
+            "key": "x-requested-with",
+            "value": "XMLHttpRequest"
+          },
+          {
+            "key": "vnd-eo-parent-span-id",
+            "value": "074e270d-8ed6-45f1-8bb9-dcc0283a3df0"
+          },
+          {
+            "key": "user-agent",
+            "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36"
+          },
+          {
+            "key": "vnd-eo-span-id",
+            "value": "a9b2ea03-38ef-4d81-97bf-120d21601fa2"
+          },
+          {
+            "key": "sec-ch-ua-platform",
+            "value": "\"Windows\""
+          },
+          {
+            "key": "sec-fetch-mode",
+            "value": "cors"
+          },
+          {
+            "key": "sec-fetch-dest",
+            "value": "empty"
+          },
+          {
+            "key": "accept-language",
+            "value": "en-GB,en;q=0.9"
+          }
+        ],
+        "url": {
+          "raw": "https://www.yx.com/api/search?page={{PageNum}}",
+          "protocol": "https",
+          "host": ["www", "yx", "com"],
+          "path": ["api", "search"],
+          "query": [
+            {
+              "key": "page",
+              "value": "{{PageNum}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "collectionResponses",
+      "value": ""
+    }
+  ]
+}
